@@ -1,0 +1,15 @@
+{
+	"name": "df-healthcare-01",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "a5247b1b-ae38-4ff5-97c4-acd20753fdb1",
+		"tenantId": "498c8e82-8b21-46d2-a75c-9b0c9e378819"
+	}
+}
