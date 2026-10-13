@@ -22,8 +22,12 @@
 					},
 					"dataset": {
 						"referenceName": "AzureSqlTables",
-						"type": "DatasetReference"
-					}
+						"type": "DatasetReference",
+						"parameters": {
+							"schemaName": "raw"
+						}
+					},
+					"firstRowOnly": false
 				}
 			}
 		],
