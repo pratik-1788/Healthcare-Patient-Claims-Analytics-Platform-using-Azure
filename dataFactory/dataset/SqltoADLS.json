@@ -16,11 +16,11 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": {
-					"value": "@dataset().tableName",
+					"value": "@concat(dataset().tableName, '.csv')",
 					"type": "Expression"
 				},
 				"folderPath": {
-					"value": "@dataset().tableName",
+					"value": "@concat(dataset().tableName, '/', formatDateTime(utcNow(), 'yyyy-MM-dd'))\n",
 					"type": "Expression"
 				},
 				"fileSystem": "bronze"
