@@ -53,7 +53,14 @@
 						{
 							"name": "CopySqltoAdLs",
 							"type": "Copy",
-							"dependsOn": [],
+							"dependsOn": [
+								{
+									"activity": "getmaxdate",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
 							"policy": {
 								"timeout": "0.12:00:00",
 								"retry": 0,
@@ -123,12 +130,6 @@
 							"name": "SuccessupdatecontrolTable",
 							"type": "SqlServerStoredProcedure",
 							"dependsOn": [
-								{
-									"activity": "getmaxdate",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								},
 								{
 									"activity": "CopySqltoAdLs",
 									"dependencyConditions": [
