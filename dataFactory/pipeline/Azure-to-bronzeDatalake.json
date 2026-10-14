@@ -73,7 +73,7 @@
 								"source": {
 									"type": "AzureSqlSource",
 									"sqlReaderQuery": {
-										"value": "@concat(\n    'SELECT s.* FROM raw.',\n    item().tableName,\n    ' AS s INNER JOIN raw.ETL_Control_Table AS c ON c.TableName = ''',\n    item().tableName,\n    ''' WHERE c.LastSuccessfulWatermark IS NOT NULL AND s.ModifiedDate > c.LastSuccessfulWatermark'\n)\n",
+										"value": "@concat(\n    'SELECT s.* FROM raw.',\n    item().TableName,\n    ' AS s INNER JOIN raw.ETL_Control_Table AS c ON c.TableName = ''',\n    item().TableName,\n    ''' WHERE c.LastSuccessfulWatermark IS NOT NULL AND s.ModifiedDate > c.LastSuccessfulWatermark AND s.ModifiedDate <= ''',\n    string(activity('getmaxdate').output.firstRow.NewWatermark),\n    ''''\n)\n",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
