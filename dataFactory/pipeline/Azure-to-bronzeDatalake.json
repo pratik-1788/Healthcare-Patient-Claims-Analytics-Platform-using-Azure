@@ -235,7 +235,7 @@
 								"source": {
 									"type": "AzureSqlSource",
 									"sqlReaderQuery": {
-										"value": "@concat(\n    'SELECT MAX(ModifiedDate) AS NewWatermark FROM raw.',\n    item().tableName\n)",
+										"value": "@concat(\n    'SELECT MAX(ModifiedDate) AS NewWatermark FROM raw.',\n    item().TableName\n)",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
