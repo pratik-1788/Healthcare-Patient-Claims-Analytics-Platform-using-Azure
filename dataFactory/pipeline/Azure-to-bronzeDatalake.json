@@ -256,6 +256,62 @@
 						}
 					]
 				}
+			},
+			{
+				"name": "StatusOfsuccessPipeline",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "sendTableName",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "POST",
+					"url": "https://prod-17.northcentralus.logic.azure.com:443/workflows/992d7c4f20d24c26b3e25fafe6c30769/triggers/When_an_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_an_HTTP_request_is_received%2Frun&sv=1.0&sig=JIF4oV_J1xl1bQ1WR1NthtMpxVVPEPrdPHME2ftkjIU",
+					"body": {
+						"value": "\n{\n  \"pipelineName\": \"@{pipeline().Pipeline}\",\n  \"status\": \"Succeeded\",\n  \"runId\": \"@{pipeline().RunId}\",\n  \"message\": \"Healthcare pipeline completed successfully.\",\n  \"time\": \"@{utcNow()}\"\n}\n",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "StatusOfFailPipeline",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "sendTableName",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "POST",
+					"url": "https://prod-17.northcentralus.logic.azure.com:443/workflows/992d7c4f20d24c26b3e25fafe6c30769/triggers/When_an_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_an_HTTP_request_is_received%2Frun&sv=1.0&sig=JIF4oV_J1xl1bQ1WR1NthtMpxVVPEPrdPHME2ftkjIU",
+					"body": {
+						"value": "\n{\n  \"pipelineName\": \"@{pipeline().Pipeline}\",\n  \"status\": \"Failed\",\n  \"runId\": \"@{pipeline().RunId}\",\n  \"message\": \"Healthcare pipeline failed. Check ADF Monitor for error details.\",\n  \"time\": \"@{utcNow()}\"\n}\n  ",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"annotations": []
