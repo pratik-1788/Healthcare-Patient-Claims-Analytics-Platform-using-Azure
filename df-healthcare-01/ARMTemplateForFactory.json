@@ -197,10 +197,10 @@
 											},
 											"LastSuccessfulWatermark": {
 												"value": {
-													"value": "@activity('getmaxdate').output.firstRow.NewWatermark",
+													"value": "@string(activity('getmaxdate').output.firstRow.NewWatermark)",
 													"type": "Expression"
 												},
-												"type": "DateTime"
+												"type": "String"
 											},
 											"TableName": {
 												"value": {
